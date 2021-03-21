@@ -1,13 +1,12 @@
 import java.util.*;
 public class estruturaSaldo {
 	//Instance Variables
-    Double DesRec;
-    Stack<Double> stack ;
-    
+    int DesRec;
+    public static Stack<Integer> stack = new Stack<Integer>();
     // Constructor of Class
-    public estruturaSaldo(Stack<Double> stack, Double DesRec)
+    public estruturaSaldo( int DesRec, Stack<Integer> stack)
     {
-        this.stack = stack;
+    	estruturaSaldo.stack = stack;
         this.DesRec = DesRec;
     }
     //Class overload
@@ -21,9 +20,10 @@ public class estruturaSaldo {
     	return stack;
 	}
     //Get the Saldo value
-    public static void Pilha(Stack<Double> stack  )
+    public static void Pilha(int value )
 	{
-    	System.out.println(stack.peek());
+    	stack.push(value); 
+    	System.out.println(stack);
 	}
     
     

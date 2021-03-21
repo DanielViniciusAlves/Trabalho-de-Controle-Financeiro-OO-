@@ -13,6 +13,7 @@ public class Main {
 		String date = "01/01/2021";
 		Scanner read = new Scanner(System.in);
 		char option;
+		int value=0;
 		do {
 			//Print the Menu
 			System.out.print("Digite a opcao desejada:\n"); 
@@ -23,22 +24,8 @@ public class Main {
 	        option = read.next().charAt(0); 
 	        switch(option) {
 	        	case('1'):
-	        		//Print the Date input and store the date value 
-	        		date = printMenu.Date(date);
-	        		//Print the Value input and store the value 
-	        		double value = printMenu.Value();
-	        		//Store the transfers
-	        		transferencias = transfer.Operations(transferencias, value);
-	        		//Calculate the operation
-	        		stack = estruturaSaldo.Pilha(stack, value);
-	        		break;
-	        	case('2'): 
-	        		//Print the Saldo from the last date
-	        		estruturaSaldo.Pilha(stack);
-	        		break;
-	        	case('3'): 
-	        		//Print the Operations realized 
-	        		transfer.Operations(transferencias);
+	        		estruturaSaldo.Pilha(++value);
+	        		System.out.print(estrutura.stack);
 	        		break;
 	        }
 			

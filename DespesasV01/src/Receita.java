@@ -4,26 +4,26 @@ import java.util.*;
 import org.javatuples.Pair; 
 
 public class Receita extends Operacoes {
-	public static Stack<Double> stack = new Stack<Double>();
+	//Declarando variaveis
+	private Stack<Double> stack = new Stack<Double>();
 	private static Map<LocalDate, Pair<Double, String>> dict = new HashMap<LocalDate, Pair<Double, String>>();
-	Scanner read = new Scanner(System.in);
-	DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	private Scanner read = new Scanner(System.in);
+	private DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	private LocalDate data;
 	private String desc;
 	private double valor, valor2;
 	
+	//Construtor da classe
 	public Receita(Stack<Double> stack) {
-		Receita.stack = stack;
+		this.stack = stack;
 	}
 	
+	//Retorna Receita
 	public static Map<LocalDate, Pair<Double, String>> GetReceitaDict(){
 		return dict;
 	}
 	
-	public Double GetReceitaStackPeek(){
-		return stack.peek();
-	}
-	
+	//Coleta dados que serao adicionados
 	public void AddReceita() {
 		valor = ColetarValor();
 		data = ColetarData();
@@ -31,33 +31,38 @@ public class Receita extends Operacoes {
 		Armazenar(data, valor, desc);
 		Armazenar(valor);
 	}
-
+	
+	//Coleta input de valor
 	protected double ColetarValor (){
 		System.out.print("Digite o valor ");
         valor = read.nextDouble(); 
         return valor;
 		
 	}
-
+	
+	//Coleta input de Data
 	protected LocalDate ColetarData() {
 		System.out.print("Digite a Data(yyyy-MM-dd) ");
 		data = LocalDate.parse(read.next(), formatoData);
 		return data;
 	}
 
-	
+	//Coleta input de Descricao
 	protected String ColetarDescricao() {
 		System.out.print("Digite a descricao ");
 		desc = read.next(); 
 		return desc;
 	}
 	
+	//Sobrecarga de Armazenar
+	//Armazena stack
 	protected Stack<Double> Armazenar(double valor) {
 		valor2 = stack.peek() + valor;
     	stack.push(valor2); 
 		return stack;
 	}
 	
+	//Armazenar Dicionario
 	protected Map<LocalDate, Pair<Double, String>> Armazenar(LocalDate data, double valor, String desc) {
 		Pair<Double, String> pair = new Pair<Double, String>(0.00,"");
 		if(dict.containsKey(data)) {
