@@ -13,6 +13,49 @@ public class Receita extends Operacoes {
 	private String desc;
 	private double valor, valor2;
 	
+	// Get
+	public LocalDate getData() {
+		return data;
+	}
+	public String getDesc() {
+		return desc;
+	}
+	public Double getValor() {
+		return valor;
+	}
+	public Double getValor2() {
+		return valor2;
+	}
+	
+	// Set
+	public void setDate(LocalDate data) {
+    	this.data = data;
+    }
+	public void setDesc(String desc) {
+    	this.desc = desc;
+    }
+	public void setValor(Double valor) {
+    	this.valor = valor;
+    }
+	public void setValor2(Double valor2) {
+    	this.valor2 = valor2;
+    }
+	
+	// Get
+	public Stack<Double> getStack() {
+		return stack;
+	}
+	public DateTimeFormatter getFormatoData() {
+		return formatoData;
+	}
+	// Set
+	public void setStack(Stack<Double> stack) {
+    	this.stack = stack;
+    }
+	public void setFormatoData(DateTimeFormatter formatoData) {
+		this.formatoData = formatoData;
+	}
+			
 	//Construtor da classe
 	public Receita(Stack<Double> stack) {
 		this.stack = stack;

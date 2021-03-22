@@ -2,7 +2,16 @@ import java.util.*;
 public class Saldo {
 	//Declarando variaveis
 	private  Stack<Double> stack = new Stack<Double>();
-
+	
+	// Get
+	public Stack<Double> getStack() {
+		return stack;
+	}
+	// Set
+	public void setStack(Stack<Double> stack) {
+    	this.stack = stack;
+    }
+	
 	//Construtor da classe Saldo
 	public Saldo(Stack<Double> stack) {
 		this.stack = stack;
