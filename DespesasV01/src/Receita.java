@@ -6,25 +6,25 @@ import org.javatuples.Pair;
 public class Receita extends Operacoes {
 	//Declarando variaveis
 	private Stack<Double> stack = new Stack<Double>();
-	private static Map<LocalDate, Pair<Double, String>> dict = new HashMap<LocalDate, Pair<Double, String>>();
+	private static Map<LocalDate, Pair<Double, String>> dictionary = new HashMap<LocalDate, Pair<Double, String>>();
 	private Scanner read = new Scanner(System.in);
 	private DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	private LocalDate data;
-	private String desc;
-	private double valor, valor2;
+	private String descricao;
+	private double valor, valorTemp;
 	
 	// Get
 	public LocalDate getData() {
 		return data;
 	}
 	public String getDesc() {
-		return desc;
+		return descricao;
 	}
 	public Double getValor() {
 		return valor;
 	}
 	public Double getValor2() {
-		return valor2;
+		return valorTemp;
 	}
 	
 	// Set
@@ -32,13 +32,13 @@ public class Receita extends Operacoes {
     	this.data = data;
     }
 	public void setDesc(String desc) {
-    	this.desc = desc;
+    	this.descricao = desc;
     }
 	public void setValor(Double valor) {
     	this.valor = valor;
     }
 	public void setValor2(Double valor2) {
-    	this.valor2 = valor2;
+    	this.valorTemp = valor2;
     }
 	
 	// Get
@@ -63,15 +63,15 @@ public class Receita extends Operacoes {
 	
 	//Retorna Receita
 	public static Map<LocalDate, Pair<Double, String>> GetReceitaDict(){
-		return dict;
+		return dictionary;
 	}
 	
 	//Coleta dados que serao adicionados
 	public void AddReceita() {
 		valor = ColetarValor();
 		data = ColetarData();
-		desc = ColetarDescricao();
-		Armazenar(data, valor, desc);
+		descricao = ColetarDescricao();
+		Armazenar(data, valor, descricao);
 		Armazenar(valor);
 	}
 	
@@ -93,28 +93,28 @@ public class Receita extends Operacoes {
 	//Coleta input de Descricao
 	protected String ColetarDescricao() {
 		System.out.print("Digite a descricao ");
-		desc = read.next(); 
-		return desc;
+		descricao = read.next(); 
+		return descricao;
 	}
 	
 	//Sobrecarga de Armazenar
 	//Armazena stack
 	protected Stack<Double> Armazenar(double valor) {
-		valor2 = stack.peek() + valor;
-    	stack.push(valor2); 
+		valorTemp = stack.peek() + valor;
+    	stack.push(valorTemp); 
 		return stack;
 	}
 	
 	//Armazenar Dicionario
 	protected Map<LocalDate, Pair<Double, String>> Armazenar(LocalDate data, double valor, String desc) {
 		Pair<Double, String> pair = new Pair<Double, String>(0.00,"");
-		if(dict.containsKey(data)) {
-			pair = dict.get(data);
+		if(dictionary.containsKey(data)) {
+			pair = dictionary.get(data);
 			valor = valor + pair.getValue0();
 			desc = desc + pair.getValue1();
 		}
-		dict.put(data, new Pair<Double, String>(valor, desc));
-		return dict;
+		dictionary.put(data, new Pair<Double, String>(valor, desc));
+		return dictionary;
 	}
 	
 }
