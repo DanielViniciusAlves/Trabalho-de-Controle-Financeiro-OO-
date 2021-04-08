@@ -9,11 +9,13 @@ public class ContaBancaria {
 		LocalDate data;
 		HashMap<LocalDate, SaldoDiario> mapa = new HashMap<LocalDate, SaldoDiario>();
 		Saldo saldo = new Saldo(mapa);
+		//Inicializacao do construtor da classe
 		Despesa despesa = new Despesa(saldo);
 		Receita receita = new Receita(saldo);
 		//Objeto para ler input
 		Scanner read = new Scanner(System.in);
 		char option;
+		String descricao;
 		do {
 			//Imprimindo Menu
 			System.out.print("Digite a opcao desejada:\n"); 
@@ -26,6 +28,7 @@ public class ContaBancaria {
 	        option = read.next().charAt(0); 
 	        //Switch para opcoes
 	        switch(option) {
+	        
 	        	case('1'):
 	        		despesa.AddDespesa();
 	        		break;
@@ -35,7 +38,24 @@ public class ContaBancaria {
 	        	case('3'):
 	        		System.out.print("Digite a Data(yyyy-MM-dd) ");
 		    		data = LocalDate.parse(read.next(), formatoData);
-	        		saldo.Historico(data);
+		    		
+		    		System.out.print("Digite a opcao desejada:\n"); 
+			        System.out.print("1.Vizualizar operacoes:\n"); 
+			        System.out.print("2.Remover operacao:\n");
+			        option = read.next().charAt(0); 
+			        switch(option) {
+			        
+				        case('1'):
+				        	saldo.EmitirHistorico(data);
+				        	break;
+				        
+				        
+				        case('2'):
+				        	System.out.print("Digite a descricao que sera deletada:\n"); 
+				        	descricao = read.next();
+				        	saldo.RemoveHistorico(data, descricao);
+				        	break;
+			        }
 	        		break;
 	        	case('4'):
 	        		data = receita.ColetarData();
