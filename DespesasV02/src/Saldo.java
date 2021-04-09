@@ -69,7 +69,7 @@ public class Saldo {
 			saldodiario.setDescricao(descricao);
 			saldodiario.setSaldo(valor);
 			saldodiario.setValor(valor);
-			saldodiario.setHistorico();
+			saldodiario.setHistorico();	
 		}
 			
 	}

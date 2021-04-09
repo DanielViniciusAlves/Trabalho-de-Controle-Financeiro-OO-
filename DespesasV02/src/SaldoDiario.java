@@ -31,7 +31,7 @@ public class SaldoDiario {
 		//Condicao se a Key ja for presente no HashMap
 		if(this.historico.containsKey(this.descricao)) {
 			//adiciona um numero na descricao
-			setDescricao(this.descricao + " - " + addControlador().toString());
+			setDescricao(this.descricao + "-" + addControlador().toString());
 			//adiciona a key ao historico
 			historico.put(getDescricao(), this.valor);
 		}

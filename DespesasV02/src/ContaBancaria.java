@@ -1,17 +1,25 @@
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class ContaBancaria {	
-	public static void Menu() {
+	public static void Menu() throws FileNotFoundException {
+		//Obtem path do arquivo
+		String filePath = System.getProperty("user.dir");
+		filePath = filePath + "\\dados.txt";
+		//Formata string de data
 		DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate data;
 		HashMap<LocalDate, SaldoDiario> mapa = new HashMap<LocalDate, SaldoDiario>();
-		Saldo saldo = new Saldo(mapa);
 		//Inicializacao do construtor da classe
+		Saldo saldo = new Saldo(mapa);
+		LeArquivo leArquivo = new LeArquivo(mapa, filePath);
 		Despesa despesa = new Despesa(saldo);
 		Receita receita = new Receita(saldo);
+		//Capta dados do arquivo 
+		leArquivo.PreencheMapa(saldo);
 		//Objeto para ler input
 		Scanner read = new Scanner(System.in);
 		char option;
@@ -68,5 +76,10 @@ public class ContaBancaria {
 		
 	    //Condicao para sair do Menu
 		}while(option != '0');
+		//Inicializacao do construtor da classe
+		ArmazenaArquivo armazena = new ArmazenaArquivo(mapa, filePath);
+		//Armazena dados do Mapa
+		armazena.Imprime();
+		System.out.println("saindo");
 	}
 }
