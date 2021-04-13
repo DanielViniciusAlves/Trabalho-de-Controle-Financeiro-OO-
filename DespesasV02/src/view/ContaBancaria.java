@@ -17,7 +17,7 @@ public class ContaBancaria {
 	public static void Menu() throws FileNotFoundException {
 		//Obtem path do arquivo
 		String filePath = System.getProperty("user.dir");
-		filePath = filePath + "\\dados.txt";
+		filePath = filePath + "dados.txt";
 		//Formata string de data
 		DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate data;
