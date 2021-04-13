@@ -14,8 +14,8 @@ public class DespesaControle {
 		despesamodelo.setValor(despesaview.ColetarValor());
 		despesamodelo.setData(despesaview.ColetarData());
 		despesamodelo.setDescricao(despesaview.ColetarDescricao());
-		saldo.AdicionaSaldoDiario(despesamodelo.getValor(), despesamodelo.getDescricao(), despesamodelo.getData());
-		saldo.SaldoTotal(despesamodelo.getValor());
+		saldo.AdicionaSaldoDiario((despesamodelo.getValor()*-1), despesamodelo.getDescricao(), despesamodelo.getData());
+		saldo.SaldoTotal(despesamodelo.getValor()*-1);
 		
 	}
 }
