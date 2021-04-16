@@ -1,4 +1,6 @@
 package controle;
+import java.time.LocalDate;
+
 import modelo.ReceitaModelo;
 import view.ReceitaView;
 
@@ -8,12 +10,12 @@ public class ReceitaControle {
 	public ReceitaControle(SaldoControle saldo) {
 		this.saldo = saldo;
 	}
-	public void AddReceita() {
-		ReceitaView receitaview = new ReceitaView();
+	public void AddReceita(Double valor, LocalDate data, String descricao) {
+		//ReceitaView receitaview = new ReceitaView();
 		ReceitaModelo receitamodelo = new ReceitaModelo();
-		receitamodelo.setValor(receitaview.ColetarValor());
-		receitamodelo.setData(receitaview.ColetarData());
-		receitamodelo.setDescricao(receitaview.ColetarDescricao());
+		receitamodelo.setValor(valor);
+		receitamodelo.setData(data);
+		receitamodelo.setDescricao(descricao);
 		saldo.AdicionaSaldoDiario(receitamodelo.getValor(), receitamodelo.getDescricao(), receitamodelo.getData());
 		saldo.SaldoTotal(receitamodelo.getValor());
 		

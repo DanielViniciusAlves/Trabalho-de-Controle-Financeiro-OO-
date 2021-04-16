@@ -12,10 +12,10 @@ public class SaldoControle {
 	private double valor;
 	private String descricao;
 	private String operacao;
-	private LocalDate data;
 	
 	//Construtor
 	public SaldoControle(HashMap<LocalDate, SaldoDiarioModelo> mapa) {
+		this.total = 0;
 		this.mapa = mapa;
 	}
 	
@@ -49,7 +49,7 @@ public class SaldoControle {
     }
 	
 	public Double getValor(){
-		return total; 
+		return valor; 
     }
 	public void setValor(Double valor){
 		this.valor = valor; 
@@ -78,14 +78,16 @@ public class SaldoControle {
 		}
 			
 	}
+	
 	//Adiciona e obtem o SaldoTotal
 	public void SaldoTotal(Double valor) {
-		total = valor + total;
+		this.total = valor + total;
 	}
+	
 	//EmitiHistorico sem alteracoes
-	public void EmitirHistorico(LocalDate data) {
+	public String EmitirHistorico(LocalDate data) {
 		SaldoDiarioModelo saldodiario = mapa.get(data);
-		System.out.println(saldodiario.getHistorico());	
+		return saldodiario.getHistorico().toString();
 	}
 	//Remove uma operacao do historico e emite historico
 	public void RemoveHistorico(LocalDate data, String descricao) {
@@ -95,7 +97,5 @@ public class SaldoControle {
 		SaldoTotal(saldodiario.getValor()*-1);
 		//Remove operacao
 		saldoDiarioControle.removeHistorico(descricao);
-		//Emite historico
-		System.out.println(saldodiario.getHistorico());	
 	}
 }

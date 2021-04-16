@@ -11,17 +11,26 @@ import modelo.SaldoDiarioModelo;
 
 public class LeArquivoControle {
 	private HashMap<LocalDate, SaldoDiarioModelo> mapa;
-	private String filePath;
+	private String filePathMapa;
+	private String filePathSaldo;
 	
 	//Construtor
-	public LeArquivoControle(HashMap<LocalDate, SaldoDiarioModelo> mapa, String filePath) {
+	public LeArquivoControle(HashMap<LocalDate, SaldoDiarioModelo> mapa, String filePathMapa, String filePathSaldo) {
 		this.mapa = mapa;
-		this.filePath = filePath;
+		this.filePathMapa = filePathMapa;
+		this.filePathSaldo = filePathSaldo;
 	}
 	
 	//Deleta dados do arquivo para armazenar novos dados
-	private void DeletaArquivo() throws FileNotFoundException {
-		PrintWriter writer = new PrintWriter(this.filePath);
+	private void DeletaArquivoMapa() throws FileNotFoundException {
+		PrintWriter writer = new PrintWriter(this.filePathMapa);
+		writer.print("");
+		writer.close();
+	}
+	
+	//Deleta dados do arquivo para armazenar novos dados
+	private void DeletaArquivoSaldo() throws FileNotFoundException {
+		PrintWriter writer = new PrintWriter(this.filePathSaldo);
 		writer.print("");
 		writer.close();
 	}
@@ -32,7 +41,7 @@ public class LeArquivoControle {
         try {
   
             // cria object de arquivo
-            File file = new File(filePath);
+            File file = new File(filePathMapa);
   
             // cria BufferedReader object do arquivo
             br = new BufferedReader(new FileReader(file));
@@ -75,7 +84,51 @@ public class LeArquivoControle {
                 };
             }
         }
-        DeletaArquivo();
+        DeletaArquivoMapa();
         return mapa;
+    }
+	
+	public void PreencheSaldo(SaldoControle saldo) throws FileNotFoundException{
+        BufferedReader br = null;
+  
+        try {
+  
+            // cria object de arquivo
+            File file = new File(filePathSaldo);
+  
+            // cria BufferedReader object do arquivo
+            br = new BufferedReader(new FileReader(file));
+  
+            String line = null;
+  
+            // le linha por linha
+            while ((line = br.readLine()) != null) {
+  
+                // separa informocoes pelo :
+                String valorArquivo = line;
+                Double valor = Double.parseDouble(valorArquivo); 
+  
+                // put data, descricao e valor no mapa se nao estiverem vazias
+                if (!valorArquivo.equals("")) {
+                	saldo.SaldoTotal(valor);
+                }
+             
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+  
+            // Fechando o BufferedReader
+            if (br != null) {
+                try {
+                    br.close();
+                }
+                catch (Exception e) {
+                };
+            }
+        }
+        DeletaArquivoSaldo();
     }
 }

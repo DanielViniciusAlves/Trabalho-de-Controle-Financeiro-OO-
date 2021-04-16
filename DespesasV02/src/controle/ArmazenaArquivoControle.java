@@ -11,20 +11,24 @@ import modelo.SaldoDiarioModelo;
 
 public class ArmazenaArquivoControle {
 	private HashMap<LocalDate, SaldoDiarioModelo> mapa;
-	private String filePath;
+	private SaldoControle saldo;
+	private String filePathMapa;
+	private String filePathSaldo;
 	
 	
-	public ArmazenaArquivoControle(HashMap<LocalDate, SaldoDiarioModelo> mapa, String filePath) {
+	public ArmazenaArquivoControle(HashMap<LocalDate, SaldoDiarioModelo> mapa, String filePathMapa, String filePathSaldo, SaldoControle saldo) {
 		this.mapa = mapa;
-		this.filePath = filePath;
+		this.saldo = saldo;
+		this.filePathMapa = filePathMapa;
+		this.filePathSaldo = filePathSaldo;
 	}
 	
 	
-	public void Imprime()
+	public void ImprimeMapa()
     { 
 		HashMap<String, Double> historico = new HashMap<String, Double>();
 		// cria object de arquivo
-        File file = new File(filePath);
+        File file = new File(filePathMapa);
 
         BufferedWriter bf = null;
   
@@ -47,6 +51,36 @@ public class ArmazenaArquivoControle {
             	}
             }
   
+            bf.flush();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+  
+            try {
+  
+                // fecha o writter
+                bf.close();
+            }
+            catch (Exception e) {
+            }
+        }
+    }
+	public void ImprimeSaldo()
+    { 
+		
+		// cria object de arquivo
+        File file = new File(filePathSaldo);
+
+        BufferedWriter bf = null;
+		try {
+			  
+            // cria BufferedReader object do arquivo de saida
+            bf = new BufferedWriter(new FileWriter(file));         
+    		bf.write(saldo.getTotal().toString());
+    		// pula para nova linha
+            bf.newLine();            	           
             bf.flush();
         }
         catch (IOException e) {
