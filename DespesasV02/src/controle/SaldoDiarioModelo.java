@@ -1,4 +1,4 @@
-package modelo;
+package controle;
 import java.util.HashMap;
 
 public class SaldoDiarioModelo {

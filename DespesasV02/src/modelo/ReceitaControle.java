@@ -1,8 +1,7 @@
-package controle;
+package modelo;
 import java.time.LocalDate;
 
-import modelo.ReceitaModelo;
-//import view.ReceitaView;
+import controle.ReceitaModelo;
 
 public class ReceitaControle {
 	private SaldoControle saldo;

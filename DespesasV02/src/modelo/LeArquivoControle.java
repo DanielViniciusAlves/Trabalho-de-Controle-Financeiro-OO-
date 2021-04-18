@@ -1,4 +1,4 @@
-package controle;
+package modelo;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.HashMap;
 
-import modelo.SaldoDiarioModelo;
+import controle.SaldoDiarioModelo;
 
 public class LeArquivoControle {
 	private HashMap<LocalDate, SaldoDiarioModelo> mapa;

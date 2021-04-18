@@ -1,4 +1,4 @@
-package modelo;
+package controle;
 import java.time.LocalDate;
 
 public class ReceitaModelo{

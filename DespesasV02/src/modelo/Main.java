@@ -1,7 +1,7 @@
-package controle;
+package modelo;
 import java.io.FileNotFoundException;
 
-import modelo.ContaBancaria;
+import controle.ContaBancaria;
 
 public class Main {
 	public static void main(String[] args) throws FileNotFoundException {

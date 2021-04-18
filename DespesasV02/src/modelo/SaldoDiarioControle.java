@@ -1,8 +1,8 @@
-package controle;
+package modelo;
 
 import java.util.HashMap;
 
-import modelo.SaldoDiarioModelo;
+import controle.SaldoDiarioModelo;
 
 public class SaldoDiarioControle {
 	private double saldo;

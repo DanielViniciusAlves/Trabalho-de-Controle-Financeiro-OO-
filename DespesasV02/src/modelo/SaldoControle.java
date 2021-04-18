@@ -1,10 +1,10 @@
-package controle;
+package modelo;
 
 import java.time.LocalDate;
 import java.util.*;
 
-import controle.SaldoDiarioControle;
-import modelo.SaldoDiarioModelo;
+import controle.SaldoDiarioModelo;
+import modelo.SaldoDiarioControle;
 
 public class SaldoControle {
 	private HashMap<LocalDate, SaldoDiarioModelo> mapa;

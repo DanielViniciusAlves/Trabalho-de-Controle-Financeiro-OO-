@@ -1,4 +1,4 @@
-package controle;
+package modelo;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-import modelo.SaldoDiarioModelo;
+import controle.SaldoDiarioModelo;
 
 public class ArmazenaArquivoControle {
 	private HashMap<LocalDate, SaldoDiarioModelo> mapa;
