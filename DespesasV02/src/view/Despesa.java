@@ -132,7 +132,7 @@ public class Despesa extends JFrame {
 		// Cria botão 1 e 2 para painel 2
 		buttonSalvar = new JButton("Salvar");
 		buttonSalvar.setBackground(new Color(232, 253, 254));
-		//buttonSalvar.setBorder(border);
+		buttonSalvar.setBorder(border);
 		  
 		// Adiciona as labels na Panel
 		panel1.add(labelTitle);
@@ -176,7 +176,7 @@ public class Despesa extends JFrame {
 	            despesaControle.AddDespesa(valor, data, descricao);
 	        }
 			setVisible(false);
-			GridLayoutDemo frame = new GridLayoutDemo(mapa, filePathMapa, filePathSaldo, despesaControle, receitaControle, saldo);
+			Menu frame = new Menu(mapa, filePathMapa, filePathSaldo, despesaControle, receitaControle, saldo);
 		}
 	} 
 	

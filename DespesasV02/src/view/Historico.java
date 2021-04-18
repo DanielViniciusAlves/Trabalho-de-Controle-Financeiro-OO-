@@ -146,10 +146,10 @@ public class Historico extends JFrame {
 		// Cria botão 1 e 2 para painel 2
 		buttonExcluir = new JButton("Excluir");
 		buttonExcluir.setBackground(new Color(185, 249, 231));
-		//buttonExcluir.setBorder(border1);
+		buttonExcluir.setBorder(border1);
 		buttonPesquisar = new JButton("Pesquisar");       
 		buttonPesquisar.setBackground(new Color(185, 249, 231));
-		//buttonPesquisar.setBorder(border2); 
+		buttonPesquisar.setBorder(border2); 
 		
 		
 		// Adiciona as labels na Panel
@@ -181,7 +181,7 @@ public class Historico extends JFrame {
 		this.addWindowListener(new java.awt.event.WindowAdapter() {
 		    @Override
 		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-		    	GridLayoutDemo frame = new GridLayoutDemo(mapa, filePathMapa, filePathSaldo, despesaControle, receitaControle, saldo);
+		    	Menu frame = new Menu(mapa, filePathMapa, filePathSaldo, despesaControle, receitaControle, saldo);
 				setVisible(false);
 				
 		    }
@@ -196,7 +196,7 @@ public class Historico extends JFrame {
 		public void actionPerformed(ActionEvent event) {
 			String descricao = getdescricao.getText();
 			saldo.RemoveHistorico(data, descricao);
-			GridLayoutDemo frame = new GridLayoutDemo(mapa, filePathMapa, filePathSaldo, despesaControle, receitaControle, saldo);
+			Menu frame = new Menu(mapa, filePathMapa, filePathSaldo, despesaControle, receitaControle, saldo);
 			setVisible(false);
 		}
 	} 
