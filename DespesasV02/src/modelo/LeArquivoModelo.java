@@ -7,15 +7,15 @@ import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.HashMap;
 
-import controle.SaldoDiarioModelo;
+import controle.SaldoDiarioControle;
 
-public class LeArquivoControle {
-	private HashMap<LocalDate, SaldoDiarioModelo> mapa;
+public class LeArquivoModelo {
+	private HashMap<LocalDate, SaldoDiarioControle> mapa;
 	private String filePathMapa;
 	private String filePathSaldo;
 	
 	//Construtor
-	public LeArquivoControle(HashMap<LocalDate, SaldoDiarioModelo> mapa, String filePathMapa, String filePathSaldo) {
+	public LeArquivoModelo(HashMap<LocalDate, SaldoDiarioControle> mapa, String filePathMapa, String filePathSaldo) {
 		this.mapa = mapa;
 		this.filePathMapa = filePathMapa;
 		this.filePathSaldo = filePathSaldo;
@@ -35,7 +35,7 @@ public class LeArquivoControle {
 		writer.close();
 	}
 	
-	public HashMap<LocalDate, SaldoDiarioModelo> PreencheMapa(SaldoControle saldo) throws FileNotFoundException{
+	public HashMap<LocalDate, SaldoDiarioControle> PreencheMapa(SaldoModelo saldo) throws FileNotFoundException{
         BufferedReader br = null;
   
         try {
@@ -88,7 +88,7 @@ public class LeArquivoControle {
         return mapa;
     }
 	
-	public void PreencheSaldo(SaldoControle saldo) throws FileNotFoundException{
+	public void PreencheSaldo(SaldoModelo saldo) throws FileNotFoundException{
         BufferedReader br = null;
   
         try {

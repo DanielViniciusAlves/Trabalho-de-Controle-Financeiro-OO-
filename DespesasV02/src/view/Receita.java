@@ -13,10 +13,10 @@ import java.util.HashMap;
 import javax.swing.*;
 import javax.swing.border.Border;
 
-import controle.SaldoDiarioModelo;
-import modelo.DespesaControle;
-import modelo.ReceitaControle;
-import modelo.SaldoControle;
+import controle.SaldoDiarioControle;
+import modelo.DespesaModelo;
+import modelo.ReceitaModelo;
+import modelo.SaldoModelo;
 
 
 public class Receita extends JFrame {
@@ -33,15 +33,15 @@ public class Receita extends JFrame {
 	private JButton buttonSalvar;
 	private GridLayout grid_cont;
 	private JTextField getvalor, getdescricao, getdata;
-	private DespesaControle despesaControle;
-	private SaldoControle saldo;
-	private HashMap<LocalDate, SaldoDiarioModelo> mapa;
+	private DespesaModelo despesaControle;
+	private SaldoModelo saldo;
+	private HashMap<LocalDate, SaldoDiarioControle> mapa;
 	private String filePathMapa;
 	private String filePathSaldo;
-	private ReceitaControle receitaControle;
+	private ReceitaModelo receitaControle;
 	private DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	
-	public Receita(HashMap<LocalDate, SaldoDiarioModelo> mapa, String filePathMapa, String filePathSaldo, DespesaControle despesaControle, ReceitaControle receitaControle, SaldoControle saldo) {
+	public Receita(HashMap<LocalDate, SaldoDiarioControle> mapa, String filePathMapa, String filePathSaldo, DespesaModelo despesaControle, ReceitaModelo receitaControle, SaldoModelo saldo) {
 		this.saldo = saldo; 
 		this.mapa = mapa;
 		this.filePathMapa = filePathMapa;

@@ -3,18 +3,18 @@ package modelo;
 import java.time.LocalDate;
 import java.util.*;
 
-import controle.SaldoDiarioModelo;
-import modelo.SaldoDiarioControle;
+import controle.SaldoDiarioControle;
+import modelo.SaldoDiarioModelo;
 
-public class SaldoControle {
-	private HashMap<LocalDate, SaldoDiarioModelo> mapa;
+public class SaldoModelo {
+	private HashMap<LocalDate, SaldoDiarioControle> mapa;
 	private double total;
 	private double valor;
 	private String descricao;
 	private String operacao;
 	
 	//Construtor
-	public SaldoControle(HashMap<LocalDate, SaldoDiarioModelo> mapa) {
+	public SaldoModelo(HashMap<LocalDate, SaldoDiarioControle> mapa) {
 		this.total = 0;
 		this.mapa = mapa;
 	}
@@ -41,10 +41,10 @@ public class SaldoControle {
 		this.total = total; 
     }
 	
-	public HashMap<LocalDate, SaldoDiarioModelo> getMapa(){
+	public HashMap<LocalDate, SaldoDiarioControle> getMapa(){
 		return mapa; 
     }
-	public void setMapa(HashMap<LocalDate, SaldoDiarioModelo> mapa){
+	public void setMapa(HashMap<LocalDate, SaldoDiarioControle> mapa){
 		this.mapa = mapa; 
     }
 	
@@ -57,7 +57,7 @@ public class SaldoControle {
 	
 	public Double getSaldo(LocalDate data){
 		//Obtem o Saldo para a Key correta
-		SaldoDiarioModelo saldodiario = mapa.get(data);
+		SaldoDiarioControle saldodiario = mapa.get(data);
 		return saldodiario.getSaldo();
     }
 	
@@ -66,11 +66,11 @@ public class SaldoControle {
 		if(mapa.get(data) == null) {
 			//Eh criado um novo Hashmap e adicionado uma nova Key no mapa
 			HashMap<String, Double> historico = new HashMap<String, Double>();
-			mapa.put(data, new SaldoDiarioModelo(valor, descricao, historico));
+			mapa.put(data, new SaldoDiarioControle(valor, descricao, historico));
 		}
 		//Quando o mapa estiver preenchido
 		else {
-			SaldoDiarioModelo saldodiario = mapa.get(data);
+			SaldoDiarioControle saldodiario = mapa.get(data);
 			saldodiario.setDescricao(descricao);
 			saldodiario.setSaldo(valor);
 			saldodiario.setValor(valor);
@@ -86,16 +86,16 @@ public class SaldoControle {
 	
 	//EmitiHistorico sem alteracoes
 	public String EmitirHistorico(LocalDate data) {
-		SaldoDiarioModelo saldodiario = mapa.get(data);
+		SaldoDiarioControle saldodiario = mapa.get(data);
 		return saldodiario.getHistorico().toString();
 	}
 	//Remove uma operacao do historico e emite historico
 	public void RemoveHistorico(LocalDate data, String descricao) {
-		SaldoDiarioModelo saldodiario = mapa.get(data);
-		SaldoDiarioControle saldoDiarioControle = new SaldoDiarioControle(saldodiario);
+		SaldoDiarioControle saldodiario = mapa.get(data);
+		SaldoDiarioModelo saldoDiarioModelo = new SaldoDiarioModelo(saldodiario);
 		//Muda o saldo total
 		SaldoTotal(saldodiario.getValor()*-1);
 		//Remove operacao
-		saldoDiarioControle.removeHistorico(descricao);
+		saldoDiarioModelo.removeHistorico(descricao);
 	}
 }

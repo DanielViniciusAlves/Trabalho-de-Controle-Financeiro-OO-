@@ -7,11 +7,11 @@ import java.util.HashMap;
 
 import javax.swing.border.Border;
 
-import controle.SaldoDiarioModelo;
-import modelo.ArmazenaArquivoControle;
-import modelo.DespesaControle;
-import modelo.ReceitaControle;
-import modelo.SaldoControle;
+import controle.SaldoDiarioControle;
+import modelo.ArmazenaArquivoModelo;
+import modelo.DespesaModelo;
+import modelo.ReceitaModelo;
+import modelo.SaldoModelo;
 
 
 public class Menu extends JFrame{
@@ -30,14 +30,14 @@ public class Menu extends JFrame{
 	private JPanel panel2;
 //	private JPanel panel3;
 	private JPanel panel4;
-	private DespesaControle despesaControle;
-	private ReceitaControle receitaControle;
-	private SaldoControle saldo;
-	private HashMap<LocalDate, SaldoDiarioModelo> mapa;
+	private DespesaModelo despesaControle;
+	private ReceitaModelo receitaControle;
+	private SaldoModelo saldo;
+	private HashMap<LocalDate, SaldoDiarioControle> mapa;
 	private String filePathMapa;
 	private String filePathSaldo;
 	
-	public Menu(HashMap<LocalDate, SaldoDiarioModelo> mapa, String filePathMapa, String filePathSaldo, DespesaControle despesaControle, ReceitaControle receitaControle, SaldoControle saldo){
+	public Menu(HashMap<LocalDate, SaldoDiarioControle> mapa, String filePathMapa, String filePathSaldo, DespesaModelo despesaControle, ReceitaModelo receitaControle, SaldoModelo saldo){
 		this.mapa = mapa;
 		this.filePathMapa = filePathMapa;
 		this.filePathSaldo= filePathSaldo;
@@ -182,7 +182,7 @@ public class Menu extends JFrame{
 		this.addWindowListener(new java.awt.event.WindowAdapter() {
 		    @Override
 		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-		    	ArmazenaArquivoControle armazena = new ArmazenaArquivoControle(mapa, filePathMapa, filePathSaldo, saldo);
+		    	ArmazenaArquivoModelo armazena = new ArmazenaArquivoModelo(mapa, filePathMapa, filePathSaldo, saldo);
 				//Armazena dados do Mapa
 				armazena.ImprimeMapa();
 				armazena.ImprimeSaldo();

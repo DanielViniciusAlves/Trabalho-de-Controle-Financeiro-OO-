@@ -1,7 +1,7 @@
 package controle;
 import java.util.HashMap;
 
-public class SaldoDiarioModelo {
+public class SaldoDiarioControle {
 	private double saldo;
 	private double valor;
 	private String descricao;
@@ -9,7 +9,7 @@ public class SaldoDiarioModelo {
 	private Integer controlador;
 	
 	//Construtor da classe
-	public SaldoDiarioModelo(Double valor, String descricao, HashMap<String, Double> historico) {
+	public SaldoDiarioControle(Double valor, String descricao, HashMap<String, Double> historico) {
 		this.controlador = 0;
 		this.valor = valor;
 		this.descricao = descricao;

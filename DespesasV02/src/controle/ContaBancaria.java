@@ -9,11 +9,11 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
 
-import modelo.ArmazenaArquivoControle;
-import modelo.DespesaControle;
-import modelo.LeArquivoControle;
-import modelo.ReceitaControle;
-import modelo.SaldoControle;
+import modelo.ArmazenaArquivoModelo;
+import modelo.DespesaModelo;
+import modelo.LeArquivoModelo;
+import modelo.ReceitaModelo;
+import modelo.SaldoModelo;
 
 import java.awt.event.*;
 
@@ -30,12 +30,12 @@ public class ContaBancaria {
 		//Formata string de data
 		DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate data;
-		HashMap<LocalDate, SaldoDiarioModelo> mapa = new HashMap<LocalDate, SaldoDiarioModelo>();
+		HashMap<LocalDate, SaldoDiarioControle> mapa = new HashMap<LocalDate, SaldoDiarioControle>();
 		//Inicializacao do construtor da classe
-		SaldoControle saldo = new SaldoControle(mapa);
-		LeArquivoControle LeArquivoControle  = new LeArquivoControle(mapa, filePathMapa, filePathSaldo);
-		DespesaControle despesaControle = new DespesaControle(saldo);
-		ReceitaControle receitaControle = new ReceitaControle (saldo);
+		SaldoModelo saldo = new SaldoModelo(mapa);
+		LeArquivoModelo LeArquivoControle  = new LeArquivoModelo(mapa, filePathMapa, filePathSaldo);
+		DespesaModelo despesaControle = new DespesaModelo(saldo);
+		ReceitaModelo receitaControle = new ReceitaModelo (saldo);
 		//ReceitaView receitaView = new ReceitaView();
 		//Capta dados do arquivo 
 		LeArquivoControle.PreencheMapa(saldo);
@@ -43,7 +43,7 @@ public class ContaBancaria {
 		
 		Menu frame = new Menu(mapa, filePathMapa, filePathSaldo, despesaControle, receitaControle, saldo);
 		//Inicializacao do construtor da classe
-		ArmazenaArquivoControle armazena = new ArmazenaArquivoControle(mapa, filePathMapa, filePathSaldo, saldo);
+		ArmazenaArquivoModelo armazena = new ArmazenaArquivoModelo(mapa, filePathMapa, filePathSaldo, saldo);
 		//Armazena dados do Mapa
 		armazena.ImprimeMapa();
 		armazena.ImprimeSaldo();

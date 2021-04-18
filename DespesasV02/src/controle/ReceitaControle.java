@@ -1,7 +1,7 @@
 package controle;
 import java.time.LocalDate;
 
-public class DespesaModelo{
+public class ReceitaControle{
 	//Declarando variaveis
 	private LocalDate data;
 	private String descricao;
@@ -30,7 +30,7 @@ public class DespesaModelo{
 	
 			
 	//Construtor da classe
-	public DespesaModelo() {
+	public ReceitaControle() {
 		
 	}
 	

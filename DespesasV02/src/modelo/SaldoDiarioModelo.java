@@ -2,18 +2,18 @@ package modelo;
 
 import java.util.HashMap;
 
-import controle.SaldoDiarioModelo;
+import controle.SaldoDiarioControle;
 
-public class SaldoDiarioControle {
+public class SaldoDiarioModelo {
 	private double saldo;
 	private double valor;
 	private String descricao;
 	private HashMap<String, Double> historico;
 	private Integer controlador;
-	private SaldoDiarioModelo saldodiario;
+	private SaldoDiarioControle saldodiario;
 	
 	//Construtor da classe
-	public SaldoDiarioControle(SaldoDiarioModelo saldodiario) {
+	public SaldoDiarioModelo(SaldoDiarioControle saldodiario) {
 		this.saldodiario = saldodiario;
 	}
 	

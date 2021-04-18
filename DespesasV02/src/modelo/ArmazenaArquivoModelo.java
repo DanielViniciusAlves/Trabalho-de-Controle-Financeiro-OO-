@@ -7,16 +7,16 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-import controle.SaldoDiarioModelo;
+import controle.SaldoDiarioControle;
 
-public class ArmazenaArquivoControle {
-	private HashMap<LocalDate, SaldoDiarioModelo> mapa;
-	private SaldoControle saldo;
+public class ArmazenaArquivoModelo {
+	private HashMap<LocalDate, SaldoDiarioControle> mapa;
+	private SaldoModelo saldo;
 	private String filePathMapa;
 	private String filePathSaldo;
 	
 	
-	public ArmazenaArquivoControle(HashMap<LocalDate, SaldoDiarioModelo> mapa, String filePathMapa, String filePathSaldo, SaldoControle saldo) {
+	public ArmazenaArquivoModelo(HashMap<LocalDate, SaldoDiarioControle> mapa, String filePathMapa, String filePathSaldo, SaldoModelo saldo) {
 		this.mapa = mapa;
 		this.saldo = saldo;
 		this.filePathMapa = filePathMapa;
@@ -38,9 +38,9 @@ public class ArmazenaArquivoControle {
             bf = new BufferedWriter(new FileWriter(file));
   
             // loop para obter a key
-            for (Entry<LocalDate, SaldoDiarioModelo> entry : mapa.entrySet()) {
+            for (Entry<LocalDate, SaldoDiarioControle> entry : mapa.entrySet()) {
             	//inicializando constror de classe
-            	SaldoDiarioModelo saldodiario = mapa.get(entry.getKey());
+            	SaldoDiarioControle saldodiario = mapa.get(entry.getKey());
             	historico = saldodiario.getHistorico();	
             	LocalDate data = entry.getKey();
             	//loop para escrever data, descricao e valor
