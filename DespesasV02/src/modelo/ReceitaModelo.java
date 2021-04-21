@@ -3,11 +3,10 @@ import java.time.LocalDate;
 
 import controle.ReceitaControle;
 
-public class ReceitaModelo {
-	private SaldoModelo saldo;
+public class ReceitaModelo extends OperacoesHeranca{
 	//Construtor da classe
 	public ReceitaModelo(SaldoModelo saldo) {
-		this.saldo = saldo;
+		super(saldo);
 	}
 	public void AddReceita(Double valor, LocalDate data, String descricao) {
 		//ReceitaView receitaview = new ReceitaView();

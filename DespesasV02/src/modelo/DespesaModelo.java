@@ -3,11 +3,10 @@ import java.time.LocalDate;
 
 import controle.DespesaControle;
 
-public class DespesaModelo {
-	private SaldoModelo saldo;
+public class DespesaModelo extends OperacoesHeranca {
 	//Construtor da classe
 	public DespesaModelo(SaldoModelo saldo) {
-		this.saldo = saldo;
+		super(saldo);
 	}
 	public void AddDespesa(Double valor, LocalDate data, String descricao) {
 		//DespesaView despesaview = new DespesaView();
