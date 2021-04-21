@@ -129,7 +129,7 @@ public class Menu extends JFrame{
 		labelSaldo.setForeground(Color.black);
 		labelSaldo.setBorder(border_2); 
 		
-		labelValor.setText("R$ " + saldo.getTotal().toString()); 
+		labelValor.setText("R$ " + saldo.getSaldoControle().getTotal().toString()); 
 		labelValor.setFont(new Font("Serif", Font.PLAIN, 22));
 		labelValor.setBackground(new Color(240, 240, 240));
 		labelValor.setOpaque(true);

@@ -78,7 +78,7 @@ public class ArmazenaArquivoModelo {
 			  
             // cria BufferedReader object do arquivo de saida
             bf = new BufferedWriter(new FileWriter(file));         
-    		bf.write(saldo.getTotal().toString());
+    		bf.write(saldo.getSaldoControle().getTotal().toString());
     		// pula para nova linha
             bf.newLine();            	           
             bf.flush();
