@@ -1,7 +1,7 @@
 package controle;
 import java.time.LocalDate;
 
-public class ReceitaControle{
+public class ReceitaControle extends OperacoesAbstratas{
 	//Declarando variaveis
 	private LocalDate data;
 	private String descricao;
