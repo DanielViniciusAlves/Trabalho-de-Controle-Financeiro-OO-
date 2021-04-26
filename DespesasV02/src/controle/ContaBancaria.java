@@ -27,20 +27,21 @@ public class ContaBancaria {
 		filePathMapa = filePathMapa + "dados.txt";
 		String filePathSaldo = System.getProperty("user.dir");
 		filePathSaldo = filePathSaldo + "saldo.txt";
-		//Formata string de data
-		DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		LocalDate data;
+		
+		//Inicia Mapa
 		HashMap<LocalDate, SaldoDiarioControle> mapa = new HashMap<LocalDate, SaldoDiarioControle>();
+		
 		//Inicializacao do construtor da classe
 		SaldoModelo saldo = new SaldoModelo(mapa);
 		LeArquivoModelo LeArquivoControle  = new LeArquivoModelo(mapa, filePathMapa, filePathSaldo);
 		DespesaModelo despesaControle = new DespesaModelo(saldo);
 		ReceitaModelo receitaControle = new ReceitaModelo (saldo);
-		//ReceitaView receitaView = new ReceitaView();
+		
 		//Capta dados do arquivo 
 		LeArquivoControle.PreencheMapa(saldo);
 		LeArquivoControle.PreencheSaldo(saldo);
 		
+		//Chama interface
 		Menu frame = new Menu(mapa, filePathMapa, filePathSaldo, despesaControle, receitaControle, saldo);
 		//Inicializacao do construtor da classe
 		ArmazenaArquivoModelo armazena = new ArmazenaArquivoModelo(mapa, filePathMapa, filePathSaldo, saldo);

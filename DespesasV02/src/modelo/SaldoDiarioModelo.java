@@ -1,15 +1,9 @@
 package modelo;
 
-import java.util.HashMap;
 
 import controle.SaldoDiarioControle;
 
 public class SaldoDiarioModelo {
-	private double saldo;
-	private double valor;
-	private String descricao;
-	private HashMap<String, Double> historico;
-	private Integer controlador;
 	private SaldoDiarioControle saldodiario;
 	
 	//Construtor da classe
