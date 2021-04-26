@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 
 import javax.swing.*;
@@ -195,7 +196,14 @@ public class Historico extends JFrame {
 	private class ButtonExcluir implements ActionListener{
 		public void actionPerformed(ActionEvent event) {
 			String descricao = getdescricao.getText();
-			saldo.RemoveHistorico(data, descricao);
+			try {
+				saldo.RemoveHistorico(data, descricao);
+			}
+			catch(NullPointerException e) {
+				JOptionPane.showMessageDialog(null, "Descricao inserida incorretamente, te redirecionando para o menu");
+        		setVisible(false);
+    			Menu frame = new Menu(mapa, filePathMapa, filePathSaldo, despesaControle, receitaControle, saldo);
+			}
 			Menu frame = new Menu(mapa, filePathMapa, filePathSaldo, despesaControle, receitaControle, saldo);
 			setVisible(false);
 		}
@@ -206,8 +214,18 @@ public class Historico extends JFrame {
 			String s = event.getActionCommand();
 	        if (s.equals("Pesquisar")) {
 	            // set the text of the label to the text of the field
-	        	Historico.data =LocalDate.parse(getdata.getText(), formatoData);
-	        	labelVisor.setText(saldo.EmitirHistorico(data)); 
+	        	try{
+	        		Historico.data =LocalDate.parse(getdata.getText(), formatoData);
+	        	}
+	        	catch(DateTimeParseException e) {
+	        		labelVisor.setText("Digite data corretamente");
+	        	}
+	        	try {
+	        		labelVisor.setText(saldo.EmitirHistorico(data)); 
+	        	}
+	        	catch(NullPointerException e) {
+	        		labelVisor.setText("Data nao encontrada");
+	        	}
 	        }
 		}
 	} 

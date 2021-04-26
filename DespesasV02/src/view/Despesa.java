@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 
 import javax.swing.*;
@@ -32,7 +33,9 @@ public class Despesa extends JFrame {
 	private JLabel labelVazio;
 	private JButton buttonSalvar;
 	private GridLayout grid_cont;
-	private JTextField getvalor, getdescricao, getdata;
+	private JTextField getvalor;
+	private JTextField getdescricao;
+	private JTextField getdata;
 	private DespesaModelo despesaControle;
 	private SaldoModelo saldo;
 	private HashMap<LocalDate, SaldoDiarioControle> mapa;
@@ -158,7 +161,14 @@ public class Despesa extends JFrame {
 		this.setSize(300,300); 
 		this.setTitle("Despesas");
 		this.setVisible(false);  // true = botão Adicionar for acionado
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+		this.addWindowListener(new java.awt.event.WindowAdapter() {
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		    	Menu frame = new Menu(mapa, filePathMapa, filePathSaldo, despesaControle, receitaControle, saldo);
+				setVisible(false);
+				
+		    }
+		});  
 		 
 		ImageIcon pig = new ImageIcon("dollar-icon4.jpg"); //Get the picture from downloaded
 		this.setIconImage(pig.getImage()); //Change icon of this
@@ -170,13 +180,30 @@ public class Despesa extends JFrame {
 			String s = event.getActionCommand();
 	        if (s.equals("Salvar")) {
 	            // set the text of the label to the text of the field
-	        	Double valor=Double.parseDouble(getvalor.getText());  
-	        	LocalDate data =LocalDate.parse(getdata.getText(), formatoData);
-	            String descricao = getdescricao.getText();
-	            despesaControle.AddDespesa(valor, data, descricao);
+	        	try {
+	        		Double valor=Double.parseDouble(getvalor.getText());  
+	        		LocalDate data =LocalDate.parse(getdata.getText(), formatoData);
+	        		String descricao = getdescricao.getText();
+		        	if(descricao.isEmpty()) {
+		        		JOptionPane.showMessageDialog(null, "Descricao inserida incorretamente, te redirecionando para o menu");
+		        		setVisible(false);
+		    			Menu frame = new Menu(mapa, filePathMapa, filePathSaldo, despesaControle, receitaControle, saldo);
+		        	}
+	        		despesaControle.AddDespesa(valor, data, descricao);
+	        		setVisible(false);
+	    			Menu frame = new Menu(mapa, filePathMapa, filePathSaldo, despesaControle, receitaControle, saldo);
+	        	}
+	        	catch(NumberFormatException e) {
+	        		JOptionPane.showMessageDialog(null, "Valor inserido incorretamente, te redirecionando para o menu");
+	        		setVisible(false);
+	    			Menu frame = new Menu(mapa, filePathMapa, filePathSaldo, despesaControle, receitaControle, saldo);     		
+	        	}
+	        	catch(DateTimeParseException e){
+	        		JOptionPane.showMessageDialog(null, "Data inserida incorretamente, te redirecionando para o menu");
+	        		setVisible(false);
+	    			Menu frame = new Menu(mapa, filePathMapa, filePathSaldo, despesaControle, receitaControle, saldo);     
+	        	}
 	        }
-			setVisible(false);
-			Menu frame = new Menu(mapa, filePathMapa, filePathSaldo, despesaControle, receitaControle, saldo);
 		}
 	} 
 	

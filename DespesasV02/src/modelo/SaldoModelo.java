@@ -22,13 +22,6 @@ public class SaldoModelo {
 		this.SaldoControle = SaldoControle;
     }
 	
-	//Retorna Saldo diario, sem utilidade no momento
-	public Double SaldoDiario(LocalDate data){
-		//Obtem o Saldo para a Key correta
-		SaldoDiarioControle saldodiario = SaldoControle.getMapa().get(data);
-		return saldodiario.getSaldo();
-    }
-	
 	public void AdicionaSaldoDiario(Double valor, String descricao, LocalDate data) {
 		//Condicao para quando o HashMap estiver vazio
 		if(SaldoControle.getMapa().get(data) == null) {
@@ -52,11 +45,20 @@ public class SaldoModelo {
 		SaldoControle.setTotal(valor + SaldoControle.getTotal());
 	}
 	
+	//Sobrecarga de metodos
 	//EmitiHistorico sem alteracoes
 	public String EmitirHistorico(LocalDate data) {
 		SaldoDiarioControle saldodiario = SaldoControle.getMapa().get(data);
 		return saldodiario.getHistorico().toString();
 	}
+	
+	//Retorna Saldo diario, sem utilidade no momento
+	public Double EmitirHistorico(LocalDate data, Boolean saldo){
+		//Obtem o Saldo para a Key correta
+		SaldoDiarioControle saldodiario = SaldoControle.getMapa().get(data);
+		return saldodiario.getSaldo();
+    }
+		
 	//Remove uma operacao do historico e emite historico
 	public void RemoveHistorico(LocalDate data, String descricao) {
 		SaldoDiarioControle saldodiario = SaldoControle.getMapa().get(data);
