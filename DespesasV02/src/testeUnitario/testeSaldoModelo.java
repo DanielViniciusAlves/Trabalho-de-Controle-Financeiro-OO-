@@ -8,7 +8,6 @@ import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 
-import controle.SaldoControle;
 import controle.SaldoDiarioControle;
 import modelo.SaldoModelo;
 
