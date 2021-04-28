@@ -20,6 +20,11 @@ import java.awt.event.*;
 import view.Menu;
 //import view.ReceitaView;
 
+/**
+ * Inicializa interface do usuario, classes, mapa e obtem o file path onde armazena os dados
+ * @author danielalves
+ * @version 2.0
+ */
 public class ContaBancaria {	
 	public static void Menu() throws FileNotFoundException {
 		//Obtem path do arquivo
@@ -48,6 +53,5 @@ public class ContaBancaria {
 		//Armazena dados do Mapa
 		armazena.ImprimeMapa();
 		armazena.ImprimeSaldo();
-		System.out.println("saindo");
 	}
 }

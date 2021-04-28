@@ -19,7 +19,11 @@ import modelo.DespesaModelo;
 import modelo.ReceitaModelo;
 import modelo.SaldoModelo;
 
-
+/**
+ * Classe responsavel por imprimir na tela a interface grafica do Despesa para o usuario
+ * @author danielalves
+ * @version 2.0
+ */
 public class Despesa extends JFrame {
 	private JPanel panel1;
 	private JPanel panel2;
@@ -44,6 +48,16 @@ public class Despesa extends JFrame {
 	private ReceitaModelo receitaControle;
 	private DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	
+	/**
+	 * Construtor de Despesa, que recebe os parametros e produz uma interface para adicionar despesa.
+	 * Com a opcao de se inserir Descricao, Valor e Data
+	 * @param mapa HashMap com LocalDate, SaldoDiarioControle como key e value
+	 * @param filePathMapa endereco de arquivo com mapa
+	 * @param filePathSaldo endereco de arquivo com Saldo
+	 * @param despesaControle classe DespesaControle
+	 * @param receitaControle classe ReceitaControle
+	 * @param saldo classe SaldoModelo
+	 */
 	public Despesa(HashMap<LocalDate, SaldoDiarioControle> mapa, String filePathMapa, String filePathSaldo, DespesaModelo despesaControle, ReceitaModelo receitaControle, SaldoModelo saldo) {
 		this.saldo = saldo; 
 		this.mapa = mapa;
@@ -174,7 +188,12 @@ public class Despesa extends JFrame {
 		this.setIconImage(pig.getImage()); //Change icon of this
 		this.getContentPane().setBackground(new Color(234, 233, 233)); //BackGround color
 	}
-	 
+	/**
+	 * Classe privada ButtonSalvar, eh chamada quando o botao de salvar eh clicado.
+	 * Uma vez realizada a insercao de dados, sera salvo valor, data e descricao no programa e redirecionado para o menu
+	 * @author danielalves
+	 * @version 2.0
+	 */
 	private class ButtonSalvar implements ActionListener{
 		public void actionPerformed(ActionEvent event) {
 			String s = event.getActionCommand();

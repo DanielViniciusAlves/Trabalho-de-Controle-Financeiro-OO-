@@ -21,7 +21,11 @@ import modelo.DespesaModelo;
 import modelo.ReceitaModelo;
 import modelo.SaldoModelo;
 
-
+/**
+ * Classe responsavel por imprimir na tela a interface grafica do historico para o usuario
+ * @author danielalves
+ * @version 2.0
+ */
 public class Historico extends JFrame {
 	private GridLayout grid;
 	private JPanel panel1;
@@ -46,6 +50,16 @@ public class Historico extends JFrame {
 	private DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	private static LocalDate data;
 	
+	/**
+	 * Construtor de Historico, que recebe os parametros e produz uma interface para vizualizar historico e apagar determinada operacao.
+	 * Devendo inserir a data para vializar historico e descricao da operacao para apagar operacao.
+	 * @param mapa HashMap com LocalDate, SaldoDiarioControle como key e value
+	 * @param filePathMapa endereco de arquivo com mapa
+	 * @param filePathSaldo endereco de arquivo com Saldo
+	 * @param despesaControle classe DespesaControle
+	 * @param receitaControle classe ReceitaControle
+	 * @param saldo classe SaldoModelo
+	 */
 	public Historico(HashMap<LocalDate, SaldoDiarioControle> mapa, String filePathMapa, String filePathSaldo, DespesaModelo despesaControle, ReceitaModelo receitaControle, SaldoModelo saldo) {
 		
 		this.saldo = saldo; 
@@ -193,6 +207,12 @@ public class Historico extends JFrame {
 		this.getContentPane().setBackground(new Color(234, 233, 233)); //BackGround color
 	}
 	
+	/**
+	 * Classe privada ButtonExcluir, eh chamada quando o botao de Excluir eh clicado.
+	 * Uma vez realizada a insercao de dados, sera Excluido do historico a operacao e redirecionado para o Menu.
+	 * @author danielalves
+	 * @version 2.0
+	 */
 	private class ButtonExcluir implements ActionListener{
 		public void actionPerformed(ActionEvent event) {
 			String descricao = getdescricao.getText();
@@ -209,6 +229,12 @@ public class Historico extends JFrame {
 		}
 	} 
 	
+	/**
+	 * Classe privada ButtonPesquisar, eh chamada quando o botao de Pesquisar eh clicado.
+	 * Uma vez realizada a insercao de dados, sera impresso na tela o historico do dia.
+	 * @author danielalves
+	 * @version 2.0
+	 */
 	private class ButtonPesquisar implements ActionListener{
 		public void actionPerformed(ActionEvent event) {
 			String s = event.getActionCommand();

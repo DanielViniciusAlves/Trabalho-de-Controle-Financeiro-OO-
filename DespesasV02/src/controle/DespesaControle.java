@@ -1,6 +1,11 @@
 package controle;
 import java.time.LocalDate;
 
+/**
+ * Controle de Despesa, onde se encontra encapsulamento da classe pertence a classe abstrata OperacoesAbtratas
+ * @author danielalves
+ * @version 2.0
+ */
 public class DespesaControle extends OperacoesAbstratas{
 	//Declarando variaveis
 	private LocalDate data;

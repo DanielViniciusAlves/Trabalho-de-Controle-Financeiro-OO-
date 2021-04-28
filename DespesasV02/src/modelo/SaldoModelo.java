@@ -7,10 +7,18 @@ import controle.SaldoDiarioControle;
 import controle.SaldoControle;
 //import modelo.SaldoDiarioModelo;
 
+/**
+ * Classe SaldoModelo responsavel por adicionar operacao, emitir o historico de operacoes e retirar uma operacao realizada
+ * @author danielalves
+ * @version 2.0
+ */
 public class SaldoModelo {
 	private SaldoControle SaldoControle;
 	
-	//Construtor
+	/**
+	 * Construtor da classe SaldoModelo, inicializando SaldoControle
+	 * @param mapa HashMap com LocalDate, SaldoDiarioControle como key e value
+	 */
 	public SaldoModelo(HashMap<LocalDate, SaldoDiarioControle> mapa) {
 		this.SaldoControle = new SaldoControle(mapa);
 	}
@@ -22,6 +30,13 @@ public class SaldoModelo {
 		this.SaldoControle = SaldoControle;
     }
 	
+	/**
+	 * AdicionaSaldoDiario adiciona operacao ao mapa.
+	 * Se no dia adicionado ja tiver uma operacao so eh adicionado nao se inicializa construtor da classe SaldoDiarioControle
+	 * @param valor Valor adicionado
+	 * @param data Data adicionada
+	 * @param descricao Descricao Adicionada
+	 */
 	public void AdicionaSaldoDiario(Double valor, String descricao, LocalDate data) {
 		//Condicao para quando o HashMap estiver vazio
 		if(SaldoControle.getMapa().get(data) == null) {
@@ -40,26 +55,43 @@ public class SaldoModelo {
 			
 	}
 	
-	//Adiciona ao Saldo
+	/**
+	 * SaldoTotal vai adicionar o valor da operacao ao saldo total
+	 * @param valor Valor adicionado
+	 */
 	public void SaldoTotal(Double valor) {
 		SaldoControle.setTotal(valor + SaldoControle.getTotal());
 	}
 	
 	//Sobrecarga de metodos
-	//EmitiHistorico sem alteracoes
+	/**
+	 * EmitirHistorico recebe a data e retorna todas operacoes realizadas no dia
+	 * @param data Data adicionada
+	 * @return Historico de operacoes do dia em forma de string
+	 */
 	public String EmitirHistorico(LocalDate data) {
 		SaldoDiarioControle saldodiario = SaldoControle.getMapa().get(data);
 		return saldodiario.getHistorico().toString();
 	}
 	
-	//Retorna Saldo diario, sem utilidade no momento
+	/**
+	 * EmitirHistorico recebe a data e retorna saldoTotal do dia requisitado.
+	 * Sem utilidade no momento
+	 * @param data Data adicionada
+	 * @param saldo Boolean para realizar operacao
+	 * @return SaldoTotal do dia requisitado
+	 */
 	public Double EmitirHistorico(LocalDate data, Boolean saldo){
 		//Obtem o Saldo para a Key correta
 		SaldoDiarioControle saldodiario = SaldoControle.getMapa().get(data);
 		return saldodiario.getSaldo();
     }
-		
-	//Remove uma operacao do historico e emite historico
+	
+	/**
+	 * RemoveHistorico remove uma operacao do historico, muda SaldoTotal e emite historico
+	 * @param data Data adicionada
+	 * @param descricao Descricao Adicionada
+	 */
 	public void RemoveHistorico(LocalDate data, String descricao) {
 		SaldoDiarioControle saldodiario = SaldoControle.getMapa().get(data);
 		SaldoDiarioModelo saldoDiarioModelo = new SaldoDiarioModelo(saldodiario);

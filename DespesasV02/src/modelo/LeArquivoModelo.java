@@ -9,32 +9,52 @@ import java.util.HashMap;
 
 import controle.SaldoDiarioControle;
 
+/**
+ * Classe ArmazenaArquivoModelo que pega o arquivo .txt colhe todos os dados e salva em um mapa, em seguida apaga arquivo .txt
+ * @author danielalves
+ * @version 2.0
+ */
 public class LeArquivoModelo {
 	private HashMap<LocalDate, SaldoDiarioControle> mapa;
 	private String filePathMapa;
 	private String filePathSaldo;
 	
-	//Construtor
+	/**
+	 * Construtor da classe LeArquivoModelo, nao possui logica
+	 * @param mapa HashMap com LocalDate, SaldoDiarioControle como key e value
+	 * @param filePathMapa endereco de arquivo com mapa
+	 * @param filePathSaldo endereco de arquivo com Saldo
+	 */
 	public LeArquivoModelo(HashMap<LocalDate, SaldoDiarioControle> mapa, String filePathMapa, String filePathSaldo) {
 		this.mapa = mapa;
 		this.filePathMapa = filePathMapa;
 		this.filePathSaldo = filePathSaldo;
 	}
-	
-	//Deleta dados do arquivo para armazenar novos dados
+	/**
+	 * Deleta dados do arquivo para armazenar novos dados
+	 * @throws FileNotFoundException
+	 */
 	private void DeletaArquivoMapa() throws FileNotFoundException {
 		PrintWriter writer = new PrintWriter(this.filePathMapa);
 		writer.print("");
 		writer.close();
 	}
 	
-	//Deleta dados do arquivo para armazenar novos dados
+	/**
+	 * Deleta dados do arquivo para armazenar novos dados
+	 * @throws FileNotFoundException
+	 */
 	private void DeletaArquivoSaldo() throws FileNotFoundException {
 		PrintWriter writer = new PrintWriter(this.filePathSaldo);
 		writer.print("");
 		writer.close();
 	}
 	
+	/**
+	 * PreencheMapa vai obter os dados Data, Descricao e Valor em um formato padrao e ira salvar em uma Mapa para a utilizacao no programa
+	 * Isso sera feito em um while que tem como condicao a linha lida ser diferente de null
+	 * 
+	 */
 	public HashMap<LocalDate, SaldoDiarioControle> PreencheMapa(SaldoModelo saldo) throws FileNotFoundException{
         BufferedReader br = null;
   
@@ -87,7 +107,10 @@ public class LeArquivoModelo {
         DeletaArquivoMapa();
         return mapa;
     }
-	
+	/**
+	 * PreencheSaldo vai obter o SaldoTotal do arquivo .tx e ira salvar em saldo total do programa
+	 * 
+	 */
 	public void PreencheSaldo(SaldoModelo saldo) throws FileNotFoundException{
         BufferedReader br = null;
   

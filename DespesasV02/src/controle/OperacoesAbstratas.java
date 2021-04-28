@@ -2,6 +2,11 @@ package controle;
 
 import java.time.LocalDate;
 
+/**
+ * Classe abstrata de DespesaControle e ReceitaControle
+ * @author danielalves
+ * @version 2.0
+ */
 abstract class OperacoesAbstratas {
 	public abstract LocalDate getData();
 	public abstract void setData(LocalDate data);			

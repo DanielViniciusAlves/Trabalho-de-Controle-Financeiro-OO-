@@ -13,7 +13,11 @@ import modelo.DespesaModelo;
 import modelo.ReceitaModelo;
 import modelo.SaldoModelo;
 
-
+/**
+ * Classe responsavel por imprimir na tela a interface grafica do Menu para o usuario
+ * @author danielalves
+ * @version 2.0
+ */
 public class Menu extends JFrame{
 	private Container container;
 	private GridLayout grid;
@@ -37,6 +41,16 @@ public class Menu extends JFrame{
 	private String filePathMapa;
 	private String filePathSaldo;
 	
+	/**
+	 * Construtor de Menu, que recebe os parametros e produz uma interface para selecionar uma opcao com saldo no final da janela.
+	 * Com a opcao de adicionar saldo, receita e vizualizar ou remover historico de operacoes
+	 * @param mapa HashMap com LocalDate, SaldoDiarioControle como key e value
+	 * @param filePathMapa endereco de arquivo com mapa
+	 * @param filePathSaldo endereco de arquivo com Saldo
+	 * @param despesaControle classe DespesaControle
+	 * @param receitaControle classe ReceitaControle
+	 * @param saldo classe SaldoModelo
+	 */
 	public Menu(HashMap<LocalDate, SaldoDiarioControle> mapa, String filePathMapa, String filePathSaldo, DespesaModelo despesaControle, ReceitaModelo receitaControle, SaldoModelo saldo){
 		this.mapa = mapa;
 		this.filePathMapa = filePathMapa;
@@ -198,6 +212,12 @@ public class Menu extends JFrame{
 		
 	}
 	
+	/**
+	 * Classe privada ButtonDespesa, eh chamada quando o botao de Despesa eh clicado.
+	 * Uma vez realizada essa acao, sera redirecionado para a interface Despesa
+	 * @author danielalves
+	 * @version 2.0
+	 */
 	private class ButtonDespesa implements ActionListener{
 		public void actionPerformed(ActionEvent event) {
 			Despesa aciona_despesa = new Despesa(mapa, filePathMapa, filePathSaldo, despesaControle, receitaControle, saldo);
@@ -206,6 +226,12 @@ public class Menu extends JFrame{
 		}
 	} 
 	
+	/**
+	 * Classe privada ButtonReceita, eh chamada quando o botao de Receita eh clicado.
+	 * Uma vez realizada essa acao, sera redirecionado para a interface Receita
+	 * @author danielalves
+	 * @version 2.0
+	 */
 	private class ButtonReceita implements ActionListener{
 		public void actionPerformed(ActionEvent event) {
 			Receita aciona_receita = new Receita(mapa, filePathMapa, filePathSaldo, despesaControle, receitaControle, saldo);
@@ -214,6 +240,12 @@ public class Menu extends JFrame{
 		}
 	}
 	
+	/**
+	 * Classe privada ButtonHistorico, eh chamada quando o botao de Historico eh clicado.
+	 * Uma vez realizada essa acao, sera redirecionado para a interface Historico
+	 * @author danielalves
+	 * @version 2.0
+	 */
 	private class ButtonHistorico implements ActionListener{
 		public void actionPerformed(ActionEvent event) {
 			Historico aciona_historico = new Historico(mapa, filePathMapa, filePathSaldo, despesaControle, receitaControle, saldo);

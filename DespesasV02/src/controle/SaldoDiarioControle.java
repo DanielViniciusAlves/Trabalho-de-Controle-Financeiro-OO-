@@ -1,6 +1,11 @@
 package controle;
 import java.util.HashMap;
 
+/**
+ * Controle de SaldoDiario, onde se encontra encapsulamento da classe e onde se armazena descricao e valor em um HashMapa
+ * @author danielalves
+ * @version 2.0
+ */
 public class SaldoDiarioControle {
 	private double saldo;
 	private double valor;
@@ -8,7 +13,13 @@ public class SaldoDiarioControle {
 	private HashMap<String, Double> historico;
 	private Integer controlador;
 	
-	//Construtor da classe
+	/**
+	 * Construtor da classe SaldoDiario, onde se inicia: controlador, valor, descricao, saldo e historico.
+	 * Alem disso tambem insere dados no mapa
+	 * @param valor valor adicionado
+	 * @param descricao descricao adicionada
+	 * @param historico historico adicionado
+	 */
 	public SaldoDiarioControle(Double valor, String descricao, HashMap<String, Double> historico) {
 		this.controlador = 0;
 		this.valor = valor;
